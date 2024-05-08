@@ -20,15 +20,29 @@
             <div class="card bg-info">
 
               <div class="card-body">
-                <form class=" p-2" action="{{url('/')}}/register" method="post">
+                <form class=" p-2" action="{{url('/store')}}" method="post">
                     @csrf
 
-                    <div class="card-header">
+                    <div class="card-header bg-danger text-center">
                         Registration Form
                         </div>
 
                         <x-input type="text" name="name" label="Enter your name" class="form-control border border-danger"/>
-                        <x-input type="email" name="email" label="Enter your email" class="form-control border-danger"/>
+                        <x-input type="email" name="email" label=" email" class="form-control border-danger"/>
+                        <div>
+                        <label for="">Gender:</label><br>
+                        <select  name="gender" required>
+                            <option value="M" type="checkbox">Male</option>
+                            <option value="F">Female</option>
+                            <option value="o">Other</option>
+                        </select><br><br>
+                        <span class="text-danger">
+                            @error('gender')
+                            {{$message}}
+                            @enderror
+                         </span>
+                    </div>
+                        <x-input type="address" name="address" label="address" class="form-control border-danger"/>
                         <x-input type="password" name="password" label=" password" class="form-control border-danger"/>
                         <x-input type="password" name="password_confirm" label="confirm password" class="form-control border-danger"/>
 

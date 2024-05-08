@@ -4,19 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Student;
 
 class RegistrationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function form()
+
+
+    public function index()
     {
-    return view('form');
+     $data['students']= DB::table('students')->get();
+    return view('index',$data);
+
     }
-    public function course()
-    {
-    return view('course');
+
+    public function create()
+   {
+    return view('form.create');
     }
 
 
@@ -34,9 +40,6 @@ class RegistrationController extends Controller
         'password_confirm'=>'required|same:password'
       ]);
             //  dd(DB::table('register')->get());
-            echo "<pre>";
-            print_r($request->all());
-
     }
 
     /**
@@ -44,7 +47,22 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data['name']=$request->name;
+        $data['email']=$request->email;
+        $data['gender']=$request->gender;
+        $data['address']=$request->address;
+        $data['password']=$request->password;
+
+
+        return redirect('');
+
+        // DB::table('students')->insert($data);
+
+        // $students = Student::all();
+        //     echo "<pre>";
+        //     print_r($students->toArray());
+
+
     }
 
     /**

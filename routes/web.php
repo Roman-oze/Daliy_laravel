@@ -10,15 +10,9 @@ use App\Models\Student;
 
 
 
-Route::view('/',[RegistrationController::class,'course']);
-Route::get('/register',[RegistrationController::class,'form']);
-Route::post('/register',[RegistrationController::class,'register']);
-
-Route::get('/student', function () {
-    $students = Student::all();
-
-    echo "<pre>";
-    print_r($students->toArray());
+Route::view('students',[RegistrationController::class,'index']);
+Route::get('/create',[RegistrationController::class,'create']);
+Route::post('/store',[RegistrationController::class,'store']);
 
 
 
@@ -26,5 +20,17 @@ Route::get('/student', function () {
 
 
 
-});
+
+
+
+
+
+
+// Route::get('/student', function () {
+//     $students = Student::all();
+
+//     echo "<pre>";
+//     print_r($students->toArray());
+
+// });
 
