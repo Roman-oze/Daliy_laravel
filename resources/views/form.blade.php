@@ -45,19 +45,8 @@
       <br>
       <br>
       <br>
-      <div class="container mt-5">
-        <div class="row justify-content-center ">
-            <div class="col-md-6">
-      <form class="bg-secondary p-2" action="{{url('/')}}/register" method="post">
-        @csrf
-        <x-input type="text" name="name" label="user name" />
-        <x-input type="password" name="password" label="password" />
-        <button type="submit" class="btn btn-primary">Submit</button>
 
-      </form>
-        </div>
-        </div>
-        </div>
+
 
 
     <!-- Optional JavaScript -->

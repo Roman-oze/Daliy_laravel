@@ -14,6 +14,7 @@ class Input extends Component
     public $label;
 
 
+
     public function __construct($type,$name,$label)
     {
         $this->type=$type;

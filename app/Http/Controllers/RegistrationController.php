@@ -10,10 +10,15 @@ class RegistrationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function form()
     {
     return view('form');
     }
+    public function course()
+    {
+    return view('course');
+    }
+
 
     /**
      * Show the form for creating a new resource.

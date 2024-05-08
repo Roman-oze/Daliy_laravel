@@ -19,6 +19,8 @@
     <li><a href="#">Courses</a></li>
     <li><a href="#">Faculty</a></li>
     <li><a href="#">Contact</a></li>
+    <li><a target="#" href="#">Registration</a></li>
+    {{-- <li><a target="#" href="{{route('form')}}">registration</a></li> --}}
   </ul>
 </div>
 
