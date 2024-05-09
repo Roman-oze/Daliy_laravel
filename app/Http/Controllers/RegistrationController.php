@@ -13,10 +13,13 @@ class RegistrationController extends Controller
      */
 
 
-    public function index()
+    public function data()
     {
-     $data['students']= DB::table('students')->get();
-    return view('index',$data);
+
+        $data['veri']=Student::get();
+        return view('data',$data);
+
+
 
     }
 
@@ -29,53 +32,50 @@ class RegistrationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function register(Request $request)
-    {
 
 
-      $request->validate([
-        'name' => 'required',
-        'email' => 'required|email',
-        'password' => 'required',
-        'password_confirm'=>'required|same:password'
-      ]);
-            //  dd(DB::table('register')->get());
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $data['name']=$request->name;
-        $data['email']=$request->email;
-        $data['gender']=$request->gender;
-        $data['address']=$request->address;
-        $data['password']=$request->password;
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'gender'=>'required',
+            'address'=>'required',
+            'password' => 'required',
+            'password_confirm'=>'required|same:password'
+          ]);
 
 
-        return redirect('');
+          $data['student_id']=$request->student_id;
+          $data['name']=$request->name;
+          $data['email']=$request->email;
+          $data['gender']=$request->gender;
+          $data['address']=$request->address;
+          $data['password']=$request->password;
 
-        // DB::table('students')->insert($data);
+          DB::table('students')->insert($data);
 
-        // $students = Student::all();
-        //     echo "<pre>";
-        //     print_r($students->toArray());
+          return redirect('info');
 
+
+          // // DB::table('students')->insert($data);
+
+          // $students = Student::all();
+          //     echo "<pre>";
+          //     print_r($students->toArray());
 
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $data['student']=Student::get()->where('student_id',$id)->first();
+         return view('form.show',$data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         //
@@ -92,8 +92,9 @@ class RegistrationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $data['student']=Student::get()->where('student_id',$id)->delete();
+        return redirect('info');
     }
 }

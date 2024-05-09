@@ -10,17 +10,23 @@ use App\Models\Student;
 
 
 
-Route::view('students',[RegistrationController::class,'index']);
-Route::get('/create',[RegistrationController::class,'create']);
-Route::post('/store',[RegistrationController::class,'store']);
+
+
+
+Route::controller(RegistrationController::class)->group(function(){
+
+
+    Route::get('info','data')->name('data');
+    Route::get('/create','create')->name('create');
+    Route::post('/store','store')->name('store');
+    Route::get('/show/{id}','show')->name('show');
+    Route::delete('/delete/{id}', 'destroy')->name('delete');
 
 
 
 
 
-
-
-
+});
 
 
 
