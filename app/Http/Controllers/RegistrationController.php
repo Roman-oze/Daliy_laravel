@@ -47,7 +47,6 @@ class RegistrationController extends Controller
           ]);
 
 
-          $data['student_id']=$request->student_id;
           $data['name']=$request->name;
           $data['email']=$request->email;
           $data['gender']=$request->gender;
@@ -78,7 +77,8 @@ class RegistrationController extends Controller
 
     public function edit(string $id)
     {
-        //
+       $data['student']=Student::get()->where('student_id',$id)->first();
+       return view('form.edit',$data);
     }
 
     /**
@@ -86,7 +86,15 @@ class RegistrationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data['name']=$request->name;
+        $data['email']=$request->email;
+        $data['gender']=$request->gender;
+        $data['address']=$request->address;
+        $data['password']=$request->password;
+
+        Student::where('student_id',$id)->update($data);
+
+        return redirect('info');
     }
 
     /**
@@ -94,7 +102,11 @@ class RegistrationController extends Controller
      */
     public function destroy($id)
     {
-        $data['student']=Student::get()->where('student_id',$id)->delete();
+        DB::table('students')->where('student_id',$id)->delete();
+
         return redirect('info');
     }
+
+
+
 }

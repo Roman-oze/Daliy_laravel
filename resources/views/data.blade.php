@@ -56,14 +56,8 @@
                 <td>{{$student->address}}</td>
                 <td>{{$student->password}}</td>
                 <td>
-                    <a href="" class="btn btn-dark">Edit</a>
-
-                    <form method="POST" action="{{ route('delete', $student->student_id) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger ">Delete</button>
-                    </form>
-
+                    <a href="{{route('edit',$student->student_id)}}" class="btn btn-dark">Edit</a>
+                    <a href="{{route('delete',$student->student_id)}}" class="btn btn-danger">Delet</a>
                     <a href="{{route('show',$student->student_id)}}" class="btn btn-success">show</a>
                 </td>
 
