@@ -11,7 +11,9 @@ class RegistrationController extends Controller
     /**
      * Display a listing of the resource.
      */
-
+public function welcome(){
+    return view('welcome');
+}
 
     public function data()
     {
