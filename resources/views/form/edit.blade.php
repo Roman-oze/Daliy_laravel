@@ -20,8 +20,11 @@
             <div class="card bg-info">
 
               <div class="card-body">
-                <form class=" p-2" action="{{route('update',$student->student_id)}}" method="post">
-                    @csrf
+
+                    <form action="{{route('update',$student->student_id)}}"  method="post">
+                        @csrf
+                        @method('PUT')
+
 
                     <div class="card-header bg-danger text-center">
                         Registration Form
@@ -43,8 +46,6 @@
                          </span>
                     </div>
                         <x-input type="address" name="address" label="address" class="form-control border-danger " value="{{$student->address}}"/>
-                        <x-input type="password" name="password" label=" password" class="form-control border-danger" value="{{$student->password}}"/>
-                        <x-input type="password" name="password_confirm" label="confirm password" class="form-control border-danger" value="{{$student->password_confirm}}"/>
 
 
                   <button type="submit" class="btn btn-danger">update</button>

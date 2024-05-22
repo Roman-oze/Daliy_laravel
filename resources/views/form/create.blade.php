@@ -13,6 +13,9 @@
 </head>
 
 <body>
+    <nav class="nav justify-content-center">
+      <a class="nav-link active btn btn-danger" href="{{route('view')}}">student View</a>
+    </nav>
 
     <div class="container mt-5">
         <div class="row justify-content-center ">

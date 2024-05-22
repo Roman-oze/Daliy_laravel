@@ -51,13 +51,23 @@
             <tr>
                 <td>{{$student->student_id}}</td>
                 <td>{{$student->name}}</td>
-                <td>{{$student->eamil}}</td>
-                <td>{{$student->gender}}</td>
+                <td>{{$student->email}}</td>
+                <td>
+                    @if ($student->gender == 'M')
+                    Male
+                    @elseif ($student->gender =='F')
+                    Female
+
+                    @else
+                    Others
+
+                    @endif
+                </td>
                 <td>{{$student->address}}</td>
                 <td>{{$student->password}}</td>
                 <td>
 
-                    <a href="{{route('data')}}" class="btn btn-success">Back</a>
+                    <a href="{{route('view')}}" class="btn btn-success">Back</a>
                 </td>
 
             </tr>
