@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('_students', function (Blueprint $table) {
-            $table->id('student_id');
-            $table->string("name",50,);
-            $table->string("email",50);
-            $table->enum('gender',["M","F","o"]);
-            $table->text('address',150);
-            $table->string('password');
-
+        Schema::create('members', function (Blueprint $table) {
+            $table->id('member_id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('contact',11);
+            $table->unsignedBigInteger('group_id');
+            $table->foreign('group_id')->references('group_id')->on('groups');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('_students');
+        Schema::dropIfExists('members');
     }
 };
