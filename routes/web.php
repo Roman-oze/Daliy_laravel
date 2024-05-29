@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/data',[IndexController::class,'index'])->name('index');
 
-Route::get('/new',[IndexController::class,'group'])->name('new');
+Route::get('/new/{group}',[IndexController::class,'new'])->name('new');
+
 
 
 Route::get('/', function () {
@@ -25,5 +26,21 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::get('login',function(){
+    session()->put('user_id',1);
+    return redirect('/');
+});
+
+Route::get('logout',function(){
+
+    session()->forget('user_id');
+    return redirect('/');
+});
+
+Route::get('/no access', function(){
+ echo "you're not to allow to access this page";
+});
 
 
