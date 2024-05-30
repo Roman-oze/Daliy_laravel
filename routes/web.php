@@ -5,9 +5,22 @@ use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/data',[IndexController::class,'index'])->name('index');
+Route::controller(IndexController::class)->group(function(){
 
-Route::get('/new/{group}',[IndexController::class,'new'])->name('new');
+
+Route::get('/data','index')->name('index');
+Route::get('/new/{group}','new')->name('new');
+Route::post('store','store')->name('store');
+Route::get('/create','create')->name('create');
+Route::get('/show','show')->name('show');
+
+Route::get('/dex','dex')->name('dex');
+
+});
+
+
+
+
 
 
 
