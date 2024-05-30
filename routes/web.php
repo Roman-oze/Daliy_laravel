@@ -13,8 +13,10 @@ Route::get('/new/{group}','new')->name('new');
 Route::post('store','store')->name('store');
 Route::get('/create','create')->name('create');
 Route::get('/show','show')->name('show');
+Route::get('edit/{id}','edit')->name('edit');
+Route::put('update/{id}','update')->name('update');
+Route::delete('delete/{id}','destroy')->name('delete');
 
-Route::get('/dex','dex')->name('dex');
 
 });
 
@@ -28,15 +30,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 require __DIR__.'/auth.php';
 

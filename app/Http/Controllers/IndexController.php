@@ -25,18 +25,19 @@ return $group;
 
    public function store (Request $request){
 
-    $request ->validate([
-        'image'=>'mimes:png,jpg,jpeg,webp',
-        'name'=>'required',
-        'designation'=>'required',
-        'fb'=>'required',
-        'linked'=>'required',
-        'email'=>'required',
-        'phone'=>'required',
+    $request->validate([
+        'image' => 'required|mimes:png,jpg,jpeg,webp',
+        'name' => 'required',
+        'designation' => 'required',
+        'fb' => 'required',
+        'linked' => 'required',
+        'email' => 'required',
+        'phone' => 'required',
     ]);
 
     $fileName = time().'-itm.'.$request->file('image')->getClientOriginalExtension();
     $request->file('image')->storeAs('public/upload',$fileName);
+
 
 
 
@@ -51,8 +52,8 @@ return $group;
     // DB::table('teachers')->insert($data);
     // return redirect('shows');
 
-    echo "<pre>";
-    print_r($request->all());
+    // echo "<pre>";
+    // print_r($request->all());
 
     DB::table('teachers')->insert($data);
     return redirect('show');
@@ -68,6 +69,47 @@ return $group;
 
         $teachers = DB::table('teachers')->get();
         return view('upload.teacher_view',compact('teachers'));
+
+   }
+
+   public function edit($id){
+     $teacher = DB::table('teachers')->where('teacher_id',$id)->first();
+     return view('upload.teacher_edit',compact('teacher'));
+
+   }
+   public function update(Request $request,$id){
+    $request->validate([
+        'image'=>'required',
+        'name'=>'required',
+        'designation'=>'required',
+        'fb'=>'required',
+        'linked'=>'required',
+        'email'=>'required',
+        'phone'=>'required',
+        ]);
+
+
+        $fileName = time().'-itm.'.$request->file('image')->getClientOriginalExtension();
+        $request->file('image')->storeAs('public/upload',$fileName);
+
+        $data ['image'] = $fileName;
+        $data ['name'] = $request->name;
+        $data ['designation'] = $request->designation;
+        $data ['fb'] = $request->fb;
+        $data ['linked'] = $request->linked;
+        $data ['email'] = $request->email;
+        $data ['phone'] = $request->phone;
+
+        DB::table('teachers')->where('teacher_id',$id)->update($data);
+        return redirect('show');
+
+   }
+
+
+   public function destroy($id){
+    DB::table('teachers')->where('teacher_id',$id)->delete();
+    return redirect('show');
+
 
    }
 
