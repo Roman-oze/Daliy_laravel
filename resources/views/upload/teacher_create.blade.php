@@ -11,9 +11,12 @@
   <div class="container">
     <h2 class="text-danger">Teacher Information Form</h2>
 
+    <a href="{{route('logins')}}" class="btn btn-success text-white">Login</a>
     <a href="{{route('show')}}" class="btn btn-dark text-white">Back</a>
 
-    <form  action="{{url('store')}}" enctype="multipart/form-data" method="POST">
+
+
+    <form  action="{{url('register')}}" enctype="multipart/form-data" method="POST">
         @csrf
 
       <div class="mb-3">
