@@ -41,8 +41,9 @@ Route::controller(IndexController::class)->group(function(){
 Route::get('/data','index')->name('index');
 Route::get('/new/{group}','new')->name('new');
 // Route::post('login','login')->name('login');
+Route::post('register','register')->name('register');
 Route::get('/create','create')->name('create');
-Route::get('/show','show')->name('show');
+Route::get('/shows','show')->name('show');
 Route::get('edit/{id}','edit')->name('edit');
 Route::put('update/{id}','update')->name('update');
 Route::delete('delete/{id}','destroy')->name('delete');

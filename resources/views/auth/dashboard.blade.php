@@ -48,7 +48,7 @@
                                     <td>{{$user->fullname}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->password}}</td>
-                                    <td><img src="{{asset('/public/uploads/profiles')}}"  width="50" height="50"></td>
+                                    <td><img src="{{ asset($user->image) }}"  width="70" height="70" class="rounded-circle" ></td>
                                     <td>{{$user->type}}</td>
                                 </tr>
 

@@ -22,7 +22,7 @@ return $group;
 
    }
 
-   public function store (Request $request){
+   public function register (Request $request){
 
     $request->validate([
         'image' => 'required|mimes:png,jpg,jpeg,webp',
@@ -34,8 +34,13 @@ return $group;
         'phone' => 'required',
     ]);
 
+
+
+
     $fileName = time().'-itm.'.$request->file('image')->getClientOriginalExtension();
-    $request->file('image')->storeAs('public/upload',$fileName);
+    $request->file('image')->move('public\uploads\profiles', $fileName);
+
+
 
 
 

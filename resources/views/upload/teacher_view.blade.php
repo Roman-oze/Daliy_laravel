@@ -187,8 +187,8 @@ border: 3px solid black;
 
         <tr>
             <td>{{$teacher->teacher_id}}</td>
-          <td><img src="{{asset($teacher->image)}}" style="width: 80px; height:80px" ></td>
-          <td>{{$teacher->name}}</td>
+            <td><img src="{{asset('public/teacher'.$teacher->image)}}"  width="50" height="50"></td>
+            <td>{{$teacher->name}}</td>
           <td>{{$teacher->designation}}</td>
           <td>{{$teacher->fb}}</td>
           <td>{{$teacher->linked}}</td>

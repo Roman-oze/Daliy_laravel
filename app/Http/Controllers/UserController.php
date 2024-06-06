@@ -17,18 +17,11 @@ class UserController extends Controller
         return view('auth.dashboard', compact('users'));
     }
 
+
     public function logins(){
         return view('auth.login');
     }
 
-
-
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function registration()
     {
      return view('auth.registration');
@@ -48,16 +41,17 @@ class UserController extends Controller
         //     ]);
 
 
-        $fileName = time().'.'.$request->file('image')->getClientOriginalExtension();
-        $request->file('image')->storeAs('uploads/profiles', $fileName);
+
+        $fileName = time().'-itm.'.$request->file('image')->getClientOriginalExtension();
+        $request->file('image')->move('faculty', $fileName);
 
 
         $data ['name'] = $request->name;
         $data ['email'] = $request->email;
         // $data ['password'] = bcrypt($request->password);
         $data ['password'] = $request->password;
-        $data ['image'] = $fileName;
-        $data ['type'] = "student";
+        $data ['image'] =  'faculty/' . $fileName;;
+        $data ['type'] = $request->type;
 
 
         DB::table('users')->insert($data);
