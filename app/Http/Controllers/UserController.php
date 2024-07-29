@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Member;
+use App\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,10 +13,11 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function home()
     {
-        $users = User::all();
-        return view('auth.dashboard', compact('users'));
+        $groups = Group::all();
+        $members = Member::all();
+        return view('home', compact('members'));
     }
 
 
@@ -57,6 +60,8 @@ class UserController extends Controller
         DB::table('users')->insert($data);
         return redirect('logins')->with('success','Congratulations! You Account is ready');
 
+
+
     }
 
     public function loginUser( Request $request){
@@ -66,13 +71,11 @@ class UserController extends Controller
         $user = User::where('email',$request->input('email'))->where('password',$request->input('password'))->first();
         if($user){
             session()->put('id',$user->id);
-            session()->put('type',$user->type);
-            if($user->type =='student'){
-                return redirect('dashboard');
+            // session()->put('type',$user->type);
+            // if($user->type =='student'){
+                return "dashboard";
             }
 
-
-        }
         else{
             return redirect()->back()->with('error','Email/Password Incorrect');
         }
@@ -116,4 +119,36 @@ class UserController extends Controller
     {
         //
     }
+
+
+    public function search(Request $request){
+        $data = $request->input('search');
+
+        $users = DB::table('users')->where('name','like','%'.$data.'%')->orWhere('email','like','%'.$data.'%')->paginate(10);
+        return view('users');
+
+
+    }
+
+    public function loginUsers(Request $request){
+
+
+    $users = DB::table('users')->where('email',$request->input('email'))->where('password',$request->input('password'))->first();
+
+if($users){
+    session()->put('id',$users->id);
+    return view('layouts.dashboard');
+}
+else{
+    return redirect()->back()->with('error','email/pass incorrect');
+}
+
+    }
+
+    
+
+
+
+
+
 }

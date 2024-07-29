@@ -110,9 +110,9 @@ return $group;
 
 
         $fileName = time().'-itm.'.$request->file('image')->getClientOriginalExtension();
-        $request->file('image')->storeAs('public/upload',$fileName);
+        $request->file('image')->storeAs('upload',$fileName);
 
-        $data ['image'] = $fileName;
+        $data ['image'] =  'upload/' . $fileName;;
         $data ['name'] = $request->name;
         $data ['designation'] = $request->designation;
         $data ['fb'] = $request->fb;
